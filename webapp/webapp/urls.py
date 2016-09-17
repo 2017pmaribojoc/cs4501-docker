@@ -16,9 +16,18 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+from homepage import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    # url(r'^', include(router.urls)),
     url(r'^homepage/', include('homepage.urls')),
+    # url(r'^', include('homepage.urls')),
+
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
